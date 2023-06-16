@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-path-join-path-resolve" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/16/path-join-path-resolve/" class="article-date">
+  <time class="dt-published" datetime="2023-06-16T11:07:24.000Z" itemprop="datePublished">2023-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/16/path-join-path-resolve/">path.join() and path.resolve()</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>path</strong> is one of the many modules present inside the node.js library<strong>path</strong>module provides us with the utilities for working with file and directory paths.</p>
+<ul>
+<li><strong>path</strong> utilities can be used inside any node project by just importing the <strong>path</strong> module using the require function as follows.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;node:path&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>path.join()</strong></p>
+<p>The <strong>path.join()</strong> method joins all given path segments together using the platform-specific separator as a delimiter (based on the OS the node is running on.), then normalizes the resulting path(joins the path and then evaluates if any parent(..) directory or any symbols representing the path navigation in command line.). </p>
+<p><em>syntax</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.<span class="title function_">join</span>([...paths]), where <span class="string">&quot;*...paths*&quot;</span> is a sequence <span class="keyword">of</span> paths or path segments.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The <strong>path.join()</strong> method returns a string if the execution is completed successfully and a TypeError is thrown if any of the path segments is not a string.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">path.<span class="title function_">join</span>(<span class="string">&#x27;/home&#x27;</span>,<span class="string">&#x27;srikanthbattepati&#x27;</span>,<span class="string">&#x27;desktop&#x27;</span>);</span><br><span class="line"><span class="comment">// returns /home/srikanthbattepati/desktop</span></span><br><span class="line"></span><br><span class="line">path.<span class="title function_">join</span>(<span class="string">&#x27;/home&#x27;</span>,<span class="string">&#x27;srikanthbattepati&#x27;</span>,<span class="string">&#x27;desktop&#x27;</span>,<span class="string">&#x27;..&#x27;</span>);<span class="comment">// returns /home/srikanthbattepati  since, &#x27;..&#x27; represents parent directory.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// if any symbols are given it converts the symbols into appropriate directories and returns the result</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p><strong>path.resolve()</strong></p>
+<p>The <strong>path.resolve()</strong> method resolves a sequence of paths or path segments into an absolute path.(i.e. converts a set of segments into the absolute path.)</p>
+<ul>
+<li>The given sequence of paths inside the path.resolve() as the arguments are resolved by processing the arguments or path segments from right to left, with each subsequent path prepended until an absolute path is constructed.</li>
+</ul>
+<p><strong>syntax</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.<span class="title function_">resolve</span>([...paths]) <span class="comment">// where &quot;*...paths*&quot; is a sequence of path segments.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>path.resolve</strong> will always result in an absolute URL, and will use your working directory as a base to resolve this path</p>
+</li>
+<li><p>After resolving completely if the resulting path doesn’t result in an absolute path, the current working directory is used.</p>
+</li>
+<li><p>The resulting path is normalized and trailing slashes are removed unless the path is resolved to the root directory.</p>
+</li>
+<li><p>Path segments of length zero are ignored.</p>
+</li>
+<li><p>If no path segments are passed as arguments, path.resolve() will return the absolute path of the current working directory.</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path.<span class="title function_">resolve</span>(<span class="string">&#x27;/a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>);     <span class="comment">//    C:\a\b\c</span></span><br><span class="line">path.<span class="title function_">resolve</span>(<span class="string">&#x27;/a&#x27;</span>, <span class="string">&#x27;/b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>);    <span class="comment">//    C:\b\c</span></span><br><span class="line">path.<span class="title function_">resolve</span>(<span class="string">&#x27;/a&#x27;</span>, <span class="string">&#x27;/b&#x27;</span>, <span class="string">&#x27;/c&#x27;</span>);   <span class="comment">//    C:\c</span></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/06/16/path-join-path-resolve/" data-id="cliygu4bd0001vm4cdbt39m4k" data-title="path.join() and path.resolve()" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/16/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2023-06-16T11:06:05.825Z" itemprop="datePublished">2023-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/16/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/06/16/hello-world/" data-id="cliygu4b70000vm4cfbwe5zu6" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/06/16/path-join-path-resolve/">path.join() and path.resolve()</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
